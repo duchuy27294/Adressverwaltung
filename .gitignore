@@ -1,0 +1,7 @@
+# ignore ALL files in ANY directory except src
+build
+dist
+nbproject
+test
+build.xml
+manifest.manifestmf
