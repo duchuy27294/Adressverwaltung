@@ -14,17 +14,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author huyubuntu
  */
-public class ControllerMain {
+public class ControllerInit {
     private AdressverwaltungModel model;
     private AdressverwaltungView view;
     
-    public ControllerMain(AdressverwaltungModel model, AdressverwaltungView view){
+    public ControllerInit(AdressverwaltungModel model, AdressverwaltungView view){
         this.model = model;
         this.view = view;
-        this.init();
     }
     
-    private void init(){
+    public void init(){
       int spaltenAnzahl = this.model.getColumnCount();
       int zeilenAnzahl = this.model.getRowCount();
       

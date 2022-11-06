@@ -34,14 +34,16 @@ public class CommandRemove implements CommandInterface {
         DefaultTableModel tableModel = (DefaultTableModel)this.view.getTable().getModel();
         List<String> rowData = new ArrayList<>();
         int selectedRow = this.view.getTable().getSelectedRow();
-
-        for (int i = 0; i < tableModel.getColumnCount(); i++){
-            rowData.add((String)tableModel.getValueAt(selectedRow,i));
+        
+        if (selectedRow != -1){
+            for (int i = 0; i < tableModel.getColumnCount(); i++){
+                rowData.add((String)tableModel.getValueAt(selectedRow,i));
+            }
+            SimpleEntry row = new SimpleEntry<>(selectedRow,rowData);
+            this.undoStack.push(row);
+            tableModel.removeRow(selectedRow);
+            this.view.getTable().setModel(tableModel);
         }
-        SimpleEntry row = new SimpleEntry<>(selectedRow,rowData);
-        this.undoStack.push(row);
-        tableModel.removeRow(selectedRow);
-        this.view.getTable().setModel(tableModel);
     }
 
     @Override

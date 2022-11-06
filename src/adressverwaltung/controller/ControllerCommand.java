@@ -6,7 +6,9 @@ package adressverwaltung.controller;
 
 import adressverwaltung.controller.command.CommandAdd;
 import adressverwaltung.controller.command.CommandInvoker;
+import adressverwaltung.controller.command.CommandOpen;
 import adressverwaltung.controller.command.CommandRemove;
+import adressverwaltung.controller.command.CommandSave;
 import adressverwaltung.model.AdressverwaltungModel;
 import adressverwaltung.view.AdressverwaltungView;
 import java.awt.event.ActionEvent;
@@ -31,27 +33,37 @@ public class ControllerCommand implements ActionListener
     public void registerEvents(){
         this.view.getBtnAdd().addActionListener(this);
         this.view.getBtnRemove().addActionListener(this);
-        this.view.getBtnUndo().addActionListener(this);
+        this.view.getBtnUndo().addActionListener(this::undo);
+        this.view.getBtnOpen().addActionListener(this);
+        this.view.getMniOpen().addActionListener(this);
+        this.view.getMniSave().addActionListener(this);
+        this.view.getBtnSave().addActionListener(this);
     }
     
     public void registerCommands(){
         CommandAdd cmdAdd = new CommandAdd(this.model,this.view);
         CommandRemove cmdRemove = new CommandRemove(this.model, this.view);
+        CommandOpen cmdOpen = new CommandOpen(this.model, this.view);
+        CommandSave cmdSave = new CommandSave(this.model,this.view);
+        
         this.invoker.addCommand(this.view.getBtnAdd(), cmdAdd);
         this.invoker.addCommand(this.view.getPmiMiAdd(),cmdAdd);
         this.invoker.addCommand(this.view.getBtnRemove(), cmdRemove);
         this.invoker.addCommand(this.view.getPmiMiRemove(),cmdRemove);
+        this.invoker.addCommand(this.view.getMniOpen(),cmdOpen);
+        this.invoker.addCommand(this.view.getBtnOpen(), cmdOpen);
+        this.invoker.addCommand(this.view.getBtnSave(), cmdSave);
+        this.invoker.addCommand(this.view.getMniSave(), cmdSave);
     }
 
     @Override
     public void actionPerformed(ActionEvent evt) {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         Object key = evt.getSource();
-        if (key == this.view.getBtnUndo()){
-            this.invoker.undoCommand();
-        }
-        else{
-            invoker.executeCommand(key);
-        }
+        invoker.executeCommand(key);
+    }
+    
+    public void undo(ActionEvent evt){
+        this.invoker.undoCommand();
     }
 }

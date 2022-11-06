@@ -6,8 +6,7 @@
 package adressverwaltung;
 
 import adressverwaltung.controller.ControllerCommand;
-import adressverwaltung.controller.ControllerMain;
-import adressverwaltung.controller.ControllerOeffnen;
+import adressverwaltung.controller.ControllerInit;
 import adressverwaltung.model.AdressverwaltungModel;
 import adressverwaltung.view.AdressverwaltungView;
 import javax.swing.JOptionPane;
@@ -23,10 +22,9 @@ public class Start
   {
       AdressverwaltungView view = new AdressverwaltungView();
       AdressverwaltungModel model = new AdressverwaltungModel();
-      ControllerMain ctlrMain = new ControllerMain(model,view);
-      ControllerOeffnen ctlrOeffnen = new ControllerOeffnen(model,view);
+      ControllerInit ctlrInit = new ControllerInit(model,view);
       ControllerCommand ctlrCommand = new ControllerCommand(model,view);
-      ctlrOeffnen.registerEvents();
+      ctlrInit.init();
       ctlrCommand.registerEvents();
       ctlrCommand.registerCommands();
       view.setVisible(true);

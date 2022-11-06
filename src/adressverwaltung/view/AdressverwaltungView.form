@@ -20,7 +20,9 @@
         </MenuItem>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JFileChooser" name="fcOeffnen">
+    <Component class="javax.swing.JFileChooser" name="fcOpen">
+    </Component>
+    <Component class="javax.swing.JFileChooser" name="fcSave">
     </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <Properties>
@@ -33,7 +35,7 @@
             <Property name="text" type="java.lang.String" value="Datei"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mniOeffnen">
+            <MenuItem class="javax.swing.JMenuItem" name="mniOpen">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+O"/>
@@ -42,7 +44,7 @@
                 <Property name="text" type="java.lang.String" value="&#xd6;ffnen"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mniSpeichern">
+            <MenuItem class="javax.swing.JMenuItem" name="mniSave">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+S"/>
@@ -103,7 +105,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btnOeffnen">
+            <Component class="javax.swing.JButton" name="btnOpen">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/adressverwaltung/view/icons/Open24.gif"/>
@@ -114,7 +116,7 @@
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnSpeichern">
+            <Component class="javax.swing.JButton" name="btnSave">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/adressverwaltung/view/icons/Save24.gif"/>
