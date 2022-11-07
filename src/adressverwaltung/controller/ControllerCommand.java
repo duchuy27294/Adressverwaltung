@@ -5,6 +5,7 @@
 package adressverwaltung.controller;
 
 import adressverwaltung.controller.command.CommandAdd;
+import adressverwaltung.controller.command.CommandClose;
 import adressverwaltung.controller.command.CommandInvoker;
 import adressverwaltung.controller.command.CommandOpen;
 import adressverwaltung.controller.command.CommandRemove;
@@ -34,10 +35,14 @@ public class ControllerCommand implements ActionListener
         this.view.getBtnAdd().addActionListener(this);
         this.view.getBtnRemove().addActionListener(this);
         this.view.getBtnUndo().addActionListener(this::undo);
+        this.view.getMniUndo().addActionListener(this::undo);
         this.view.getBtnOpen().addActionListener(this);
         this.view.getMniOpen().addActionListener(this);
         this.view.getMniSave().addActionListener(this);
         this.view.getBtnSave().addActionListener(this);
+        this.view.getMniAdd().addActionListener(this);
+        this.view.getMniRemove().addActionListener(this);
+        this.view.getBtnClose().addActionListener(this);
     }
     
     public void registerCommands(){
@@ -45,15 +50,19 @@ public class ControllerCommand implements ActionListener
         CommandRemove cmdRemove = new CommandRemove(this.model, this.view);
         CommandOpen cmdOpen = new CommandOpen(this.model, this.view);
         CommandSave cmdSave = new CommandSave(this.model,this.view);
+        CommandClose cmdClose = new CommandClose(this.model,this.view);
         
         this.invoker.addCommand(this.view.getBtnAdd(), cmdAdd);
         this.invoker.addCommand(this.view.getPmiMiAdd(),cmdAdd);
+        this.invoker.addCommand(this.view.getMniAdd(),cmdAdd);
         this.invoker.addCommand(this.view.getBtnRemove(), cmdRemove);
         this.invoker.addCommand(this.view.getPmiMiRemove(),cmdRemove);
+        this.invoker.addCommand(this.view.getMniRemove(),cmdRemove);
         this.invoker.addCommand(this.view.getMniOpen(),cmdOpen);
         this.invoker.addCommand(this.view.getBtnOpen(), cmdOpen);
         this.invoker.addCommand(this.view.getBtnSave(), cmdSave);
         this.invoker.addCommand(this.view.getMniSave(), cmdSave);
+        this.invoker.addCommand(this.view.getBtnClose(),cmdClose);
     }
 
     @Override

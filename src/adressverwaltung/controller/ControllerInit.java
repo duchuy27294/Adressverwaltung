@@ -6,9 +6,6 @@ package adressverwaltung.controller;
 
 import adressverwaltung.model.AdressverwaltungModel;
 import adressverwaltung.view.AdressverwaltungView;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,23 +21,7 @@ public class ControllerInit {
     }
     
     public void init(){
-      int spaltenAnzahl = this.model.getColumnCount();
-      int zeilenAnzahl = this.model.getRowCount();
-      
-      List<String> columnNames = new ArrayList<>();
-      for (int i = 0; i < spaltenAnzahl; i++){
-          columnNames.add(this.model.getColumnName(i));
-      }
-      DefaultTableModel tableModel = new DefaultTableModel(columnNames.toArray(),0);
-      for (int i = 0; i < zeilenAnzahl; i++){
-          List<String> rowData = new ArrayList<>();
-          for (int j = 0; j < spaltenAnzahl; j++){
-              rowData.add((String)this.model.getValueAt(i,j));
-          }
-          tableModel.addRow(rowData.toArray());
-      }
-      
-      this.view.getTable().setModel(tableModel);
+      this.view.getTable().setModel(this.model);
       this.view.pack();   
     }
 }

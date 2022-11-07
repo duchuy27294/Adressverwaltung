@@ -10,7 +10,6 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,19 +29,16 @@ public class CommandRemove implements CommandInterface {
     
     @Override
     public void execute() {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        DefaultTableModel tableModel = (DefaultTableModel)this.view.getTable().getModel();
         List<String> rowData = new ArrayList<>();
         int selectedRow = this.view.getTable().getSelectedRow();
         
         if (selectedRow != -1){
-            for (int i = 0; i < tableModel.getColumnCount(); i++){
-                rowData.add((String)tableModel.getValueAt(selectedRow,i));
+            for (int i = 0; i < this.model.getColumnCount(); i++){
+                rowData.add((String)this.model.getValueAt(selectedRow,i));
             }
             SimpleEntry row = new SimpleEntry<>(selectedRow,rowData);
             this.undoStack.push(row);
-            tableModel.removeRow(selectedRow);
-            this.view.getTable().setModel(tableModel);
+            this.model.eintragLoeschen(selectedRow);
         }
     }
 
@@ -50,10 +46,18 @@ public class CommandRemove implements CommandInterface {
     public void undo() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         if (!this.undoStack.isEmpty()){
-            DefaultTableModel tableModel = (DefaultTableModel)this.view.getTable().getModel();
+            //DefaultTableModel tableModel = (DefaultTableModel)this.view.getTable().getModel();
             SimpleEntry<Integer,List<String>> row = this.undoStack.pop();
-            tableModel.insertRow((int)row.getKey(),row.getValue().toArray());
-            this.view.getTable().setModel(tableModel);
+            this.model.eintragHinzufuegen();
+            for (int i = this.model.getRowCount()-1; i > row.getKey(); i--){
+                for (int j = 0; j < this.model.getColumnCount(); j++){
+                    String newVal = (String)this.model.getValueAt(i-1,j);
+                    this.model.setValueAt(newVal, i, j);
+                }
+            }
+            for (int i = 0; i < 2; i++){
+                this.model.setValueAt(row.getValue().get(i),row.getKey(),i);
+            }
         }
     }
 

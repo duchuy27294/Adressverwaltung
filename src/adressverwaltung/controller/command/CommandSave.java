@@ -7,6 +7,9 @@ package adressverwaltung.controller.command;
 import adressverwaltung.model.AdressverwaltungModel;
 import adressverwaltung.view.AdressverwaltungView;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
 
@@ -41,6 +44,12 @@ public class CommandSave implements CommandInterface {
             File f = this.view.getFcSave().getSelectedFile();
             this.view.getTpDatei().setText(f.getAbsolutePath());
             this.preferences.put(CommandSave.KEY, f.getAbsolutePath());
+            try{
+                this.model.datenSpeichern(f);
+            }
+            catch (IOException ex) {
+                Logger.getLogger(CommandSave.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         this.view.pack();
     }

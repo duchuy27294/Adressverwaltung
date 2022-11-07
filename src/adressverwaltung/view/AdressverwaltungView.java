@@ -64,6 +64,8 @@ public class AdressverwaltungView extends javax.swing.JFrame {
         toolBar = new javax.swing.JToolBar();
         btnOpen = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
         btnUndo = new javax.swing.JButton();
         scrpTable = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -72,13 +74,15 @@ public class AdressverwaltungView extends javax.swing.JFrame {
         scrpTpDatei = new javax.swing.JScrollPane();
         tpDatei = new javax.swing.JTextPane();
         pnButtons = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menuDatei = new javax.swing.JMenu();
         mniOpen = new javax.swing.JMenuItem();
         mniSave = new javax.swing.JMenuItem();
         menuEdit = new javax.swing.JMenu();
+        mniAdd = new javax.swing.JMenuItem();
+        mniRemove = new javax.swing.JMenuItem();
+        mniUndo = new javax.swing.JMenuItem();
 
         pmiMiAdd.setText("Zeile hinzufügen");
         pm.add(pmiMiAdd);
@@ -106,6 +110,20 @@ public class AdressverwaltungView extends javax.swing.JFrame {
         btnSave.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSave.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         toolBar.add(btnSave);
+
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Add24.gif"))); // NOI18N
+        btnAdd.setToolTipText("Zeile hinzufügen");
+        btnAdd.setFocusable(false);
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        toolBar.add(btnAdd);
+
+        btnRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Remove24.gif"))); // NOI18N
+        btnRemove.setToolTipText("Zeile löschen");
+        btnRemove.setFocusable(false);
+        btnRemove.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRemove.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        toolBar.add(btnRemove);
 
         btnUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Undo24.gif"))); // NOI18N
         btnUndo.setToolTipText("Rückgangig machen");
@@ -143,13 +161,10 @@ public class AdressverwaltungView extends javax.swing.JFrame {
 
         getContentPane().add(pnContent);
 
-        btnAdd.setMnemonic('H');
-        btnAdd.setText("Hinzufügen");
-        pnButtons.add(btnAdd);
+        pnButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
-        btnRemove.setMnemonic('L');
-        btnRemove.setText("Löschen");
-        pnButtons.add(btnRemove);
+        btnClose.setText("Schließen");
+        pnButtons.add(btnClose);
 
         getContentPane().add(pnButtons);
 
@@ -159,11 +174,13 @@ public class AdressverwaltungView extends javax.swing.JFrame {
         menuDatei.setText("Datei");
 
         mniOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Open16.gif"))); // NOI18N
         mniOpen.setMnemonic('\u00d6');
         mniOpen.setText("Öffnen");
         menuDatei.add(mniOpen);
 
         mniSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Save16.gif"))); // NOI18N
         mniSave.setMnemonic('S');
         mniSave.setText("Speichern");
         menuDatei.add(mniSave);
@@ -172,6 +189,27 @@ public class AdressverwaltungView extends javax.swing.JFrame {
 
         menuEdit.setMnemonic('E');
         menuEdit.setText("Edit");
+
+        mniAdd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Add16.gif"))); // NOI18N
+        mniAdd.setMnemonic('h');
+        mniAdd.setText("Zeile hinzufügen");
+        mniAdd.setToolTipText("");
+        menuEdit.add(mniAdd);
+
+        mniRemove.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Remove16.gif"))); // NOI18N
+        mniRemove.setMnemonic('l');
+        mniRemove.setText("Zeile löschen");
+        menuEdit.add(mniRemove);
+
+        mniUndo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        mniUndo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/adressverwaltung/view/icons/Undo16.gif"))); // NOI18N
+        mniUndo.setMnemonic('z');
+        mniUndo.setText("mniUndo");
+        mniUndo.setToolTipText("");
+        menuEdit.add(mniUndo);
+
         menuBar.add(menuEdit);
 
         setJMenuBar(menuBar);
@@ -220,6 +258,7 @@ public class AdressverwaltungView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnOpen;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnSave;
@@ -230,8 +269,11 @@ public class AdressverwaltungView extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuDatei;
     private javax.swing.JMenu menuEdit;
+    private javax.swing.JMenuItem mniAdd;
     private javax.swing.JMenuItem mniOpen;
+    private javax.swing.JMenuItem mniRemove;
     private javax.swing.JMenuItem mniSave;
+    private javax.swing.JMenuItem mniUndo;
     private javax.swing.JPopupMenu pm;
     private javax.swing.JMenuItem pmiMiAdd;
     private javax.swing.JMenuItem pmiMiRemove;
@@ -317,5 +359,33 @@ public class AdressverwaltungView extends javax.swing.JFrame {
      */
     public javax.swing.JFileChooser getFcSave() {
         return fcSave;
+    }
+
+    /**
+     * @return the btnClose
+     */
+    public javax.swing.JButton getBtnClose() {
+        return btnClose;
+    }
+
+    /**
+     * @return the mniAdd
+     */
+    public javax.swing.JMenuItem getMniAdd() {
+        return mniAdd;
+    }
+
+    /**
+     * @return the mniRemove
+     */
+    public javax.swing.JMenuItem getMniRemove() {
+        return mniRemove;
+    }
+
+    /**
+     * @return the mniUndo
+     */
+    public javax.swing.JMenuItem getMniUndo() {
+        return mniUndo;
     }
 }
