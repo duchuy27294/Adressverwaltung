@@ -18,7 +18,11 @@ import javax.swing.UIManager;
  */
 public class Start 
 {
-  public Start()
+
+    /**
+     *
+     */
+    public Start()
   {
       AdressverwaltungView view = new AdressverwaltungView();
       AdressverwaltungModel model = new AdressverwaltungModel();
@@ -30,7 +34,11 @@ public class Start
       view.setVisible(true);
   }
 
-  public static void main(String[] args) 
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) 
   {
     try
     {

@@ -28,6 +28,9 @@ public class AdressverwaltungModel extends AbstractTableModel
   private ArrayList<String> adressEintraegeDaten;
   private ArrayList<String> adressEintraegeNamen;
   
+    /**
+     * Constructs a AdressverwaltungModel which already contains 2 columns (Name and Telefon) and 1 Row ("Lehner","122345")
+     */
   public AdressverwaltungModel()
   {
     adressEintraegeDaten = new ArrayList<>();
@@ -40,42 +43,77 @@ public class AdressverwaltungModel extends AbstractTableModel
     daten.add(adressEintraegeDaten);
   }
 
-  @Override
+    /**
+     * Returns the number of rows
+     * @return number of rows
+     */
+    @Override
   public int getRowCount()
   {
     return daten.size();
   }
 
-  @Override
+    /**
+     * Returns the number of columns
+     * @return number of columns
+     */
+    @Override
   public int getColumnCount()
   {
     return adressEintraegeDaten.size();
   }
 
-  @Override
+    /**
+     * Returns the object at [row][col]
+     * @param row Row
+     * @param col Column
+     * @return object at [row][col]
+     */
+    @Override
   public Object getValueAt(int row, int col)
   {
     return daten.get(row).get(col);
   }
-  @Override
+
+    /**
+     * Sets a new value to object at [row][col]
+     * @param value New value
+     * @param row Row
+     * @param col Column
+     */
+    @Override
   public void setValueAt(Object value, int row, int col)
   {
     daten.get(row).set(col, (String)value);
   }
   
-  @Override
+    /**
+     * Return true if the cell at [row][col] is editable
+     * @param row Row
+     * @param col Column
+     * @return true if the cell at [row][col] is editable
+     */
+    @Override
   public boolean isCellEditable(int row, int col)
   {
     return true;
   }
   
-  @Override
+    /**
+     * Returns column name
+     * @param col Column
+     * @return column name
+     */
+    @Override
   public String getColumnName(int col)
   {
     return adressEintraegeNamen.get(col);
   }
   
-  public void eintragHinzufuegen()
+    /**
+     * Adds a new line to model
+     */
+    public void eintragHinzufuegen()
   {
     adressEintraegeDaten = new ArrayList<>();
     adressEintraegeNamen.forEach(s -> adressEintraegeDaten.add(s));
@@ -83,18 +121,32 @@ public class AdressverwaltungModel extends AbstractTableModel
     this.fireTableDataChanged();
   }
   
-  public void eintragLoeschen(int row)
+    /**
+     * Removes line
+     * @param row Row
+     */
+    public void eintragLoeschen(int row)
   {
     daten.remove(row);
     this.fireTableDataChanged();
   }
   
-  public void spalteHinzufuegen(String name)
+    /**
+     * Adds a new column
+     * @param name Name of new column
+     */
+    public void spalteHinzufuegen(String name)
   {
     adressEintraegeNamen.add(name);
   }
   
-  public void datenSpeichern(File datei) throws FileNotFoundException, IOException
+    /**
+     * Saves model in a file
+     * @param datei File to be saved
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public void datenSpeichern(File datei) throws FileNotFoundException, IOException
   {
     FileOutputStream fos = new FileOutputStream(datei);
     BufferedOutputStream bos = new BufferedOutputStream(fos);
@@ -105,7 +157,14 @@ public class AdressverwaltungModel extends AbstractTableModel
     oos.close();
   }
   
-  public void datenLesen(File datei) throws FileNotFoundException, IOException, ClassNotFoundException
+    /**
+     * Loads new model from file
+     * @param datei File to be opened 
+     * @throws FileNotFoundException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public void datenLesen(File datei) throws FileNotFoundException, IOException, ClassNotFoundException
   {
     FileInputStream fis = new FileInputStream(datei);
     BufferedInputStream bis = new BufferedInputStream(fis);

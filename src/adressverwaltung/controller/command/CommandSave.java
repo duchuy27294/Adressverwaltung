@@ -25,6 +25,11 @@ public class CommandSave implements CommandInterface {
     private static final String KEY = "Path";
     private static final String DEFAULT_VALUE = "";
 
+    /**
+     * Constructs Command-DP CommandSave associated with Model and View
+     * @param model Model of Adressverwaltung
+     * @param view View of Adressverwaltung
+     */
     public CommandSave(AdressverwaltungModel model, AdressverwaltungView view){
         this.model = model;
         this.view = view;
@@ -32,6 +37,9 @@ public class CommandSave implements CommandInterface {
         this.preferences.get(CommandSave.KEY, CommandSave.DEFAULT_VALUE);
     }
     
+    /**
+     * Saves current table model in chosen file
+     */
     @Override
     public void execute() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -54,11 +62,18 @@ public class CommandSave implements CommandInterface {
         this.view.pack();
     }
 
+    /**
+     * Does nothing because this command is not undoable
+     */
     @Override
     public void undo() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Returns true if this command is undoable
+     * @return false
+     */
     @Override
     public boolean isUndoable() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

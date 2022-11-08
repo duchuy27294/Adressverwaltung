@@ -26,6 +26,11 @@ public class CommandOpen implements CommandInterface {
     private static final String KEY = "Path";
     private static final String DEFAULT_VALUE = "";
     
+    /**
+     * Constructs Command-DP CommandOpen associated with Model and View 
+     * @param model Model of Adressverwaltung
+     * @param view View of Adressverwaltung
+     */
     public CommandOpen(AdressverwaltungModel model, AdressverwaltungView view){
         this.model = model;
         this.view = view;
@@ -33,6 +38,9 @@ public class CommandOpen implements CommandInterface {
         this.preferences.get(CommandOpen.KEY,CommandOpen.DEFAULT_VALUE);
     }
 
+    /**
+     * Reads and loads new data model from chosen file
+     */
     @Override
     public void execute() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -55,11 +63,18 @@ public class CommandOpen implements CommandInterface {
         this.view.pack();
     }
 
+    /**
+     * Does nothing because this command is undoable
+     */
     @Override
     public void undo() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Returns true if command is undoable
+     * @return false
+     */
     @Override
     public boolean isUndoable() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

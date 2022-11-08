@@ -21,12 +21,20 @@ public class CommandRemove implements CommandInterface {
     private AdressverwaltungView view;
     private Stack<SimpleEntry<Integer,List<String>>> undoStack;
     
+    /**
+     * Constructs Command-DP CommandRemove associated with Model and View
+     * @param model Model of Adressverwaltung
+     * @param view View of Adressverwaltung
+     */
     public CommandRemove(AdressverwaltungModel model, AdressverwaltungView view){
         this.model = model;
         this.view = view;
         this.undoStack = new Stack<>();
     }
     
+    /**
+     * Removes the selected row
+     */
     @Override
     public void execute() {
         List<String> rowData = new ArrayList<>();
@@ -42,6 +50,9 @@ public class CommandRemove implements CommandInterface {
         }
     }
 
+    /**
+     * Restores the last removed row
+     */
     @Override
     public void undo() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -61,6 +72,10 @@ public class CommandRemove implements CommandInterface {
         }
     }
 
+    /**
+     * Returns true if command is undoable
+     * @return true
+     */
     @Override
     public boolean isUndoable() {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

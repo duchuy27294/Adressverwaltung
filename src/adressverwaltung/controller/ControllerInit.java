@@ -15,11 +15,19 @@ public class ControllerInit {
     private AdressverwaltungModel model;
     private AdressverwaltungView view;
     
+    /**
+     * Constructs Controller for Program's Initiation
+     * @param model Model of Adressverwaltung
+     * @param view View of Adressverwaltung
+     */
     public ControllerInit(AdressverwaltungModel model, AdressverwaltungView view){
         this.model = model;
         this.view = view;
     }
     
+    /**
+     * Initiates Program: set Model to table in View
+     */
     public void init(){
       this.view.getTable().setModel(this.model);
       this.view.pack();   
