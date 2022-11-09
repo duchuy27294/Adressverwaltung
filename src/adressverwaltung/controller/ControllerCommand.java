@@ -50,7 +50,9 @@ public class ControllerCommand implements ActionListener {
         this.view.getMniSave().addActionListener(this);
         this.view.getBtnSave().addActionListener(this);
         this.view.getMniAdd().addActionListener(this);
+        this.view.getPmiMiAdd().addActionListener(this);
         this.view.getMniRemove().addActionListener(this);
+        this.view.getPmiMiRemove().addActionListener(this);
         this.view.getBtnClose().addActionListener(this);
     }
 
